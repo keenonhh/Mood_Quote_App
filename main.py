@@ -11,6 +11,7 @@ import random
 
 Builder.load_file('design.kv')
 
+# Starting screen of the app where a user can log in, sign up, or retrieve password
 class LoginScreen(Screen):
     def sign_up(self):
         self.manager.current = "sign_up_screen"
@@ -31,6 +32,8 @@ class LoginScreen(Screen):
 class RootWidget(ScreenManager):
     pass
 
+# User may signup for an account with username, password, 
+# and answer to provided security question. Info saved in json file
 class SignUpScreen(Screen):
     def add_user(self, uname, pword, answer):
         with open("users.json") as file:
@@ -44,16 +47,21 @@ class SignUpScreen(Screen):
 
         self.manager.current = "sign_up_screen_success"
 
+# User is directed back to login screen after successfully signing up
 class SignUpScreenSuccess(Screen):
     def go_to_login(self):
         self.manager.transition.direction = 'right'
         self.manager.current = "login_screen"
 
+# Once user logins in the are brought to the main screen of the app
+# where they can input a feeling to recieve a corresponding quote
 class LoginScreenSuccess(Screen):
     def log_out(self):
         self.manager.transition.direction = 'right'
         self.manager.current = "login_screen"
 
+    # Returns a random quote from the corresponding txt file in the 
+    # quotes folder
     def get_quote(self, feel):
         feel = feel.lower()
         available_feelings = glob.glob("quotes/*txt")
@@ -69,9 +77,12 @@ class LoginScreenSuccess(Screen):
         else:
             self.ids.quote.text = "Try another feeling"
 
+# Provides the hover attirbute of the logout image from the main app screen
 class ImageButton(ButtonBehavior, HoverBehavior, Image):
     pass
 
+# User can retrieve their password by entering their username and
+# correctly answering the security question and return to login page
 class ForgotPasswordScreen(Screen):
     def check_security(self, sec_answer, uname):
         with open("users.json") as file:
