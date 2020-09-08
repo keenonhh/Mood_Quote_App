@@ -5,8 +5,8 @@ A desktop or android app that will give you a quote based on a user input feelin
 1) Login page, user my login, signup, or retrieve password\
 [![Capture.png](https://i.postimg.cc/GmYL4P8C/Capture.png)](https://postimg.cc/yD145ZyQ)
 
-
-2)Signup page where user can create an account\
+ 
+2) Signup page where user can create an account\
 [![signup.png](https://i.postimg.cc/4d8ZDBMz/signup.png)](https://postimg.cc/xJbWHy9C)
 
 
